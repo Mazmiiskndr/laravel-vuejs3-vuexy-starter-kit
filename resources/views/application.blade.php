@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  
+
   <script>
     const loaderColor = localStorage.getItem('vuexy-initial-loader-bg') || '#FFFFFF'
     const primaryColor = localStorage.getItem('vuexy-initial-loader-color') || '#7367F0'

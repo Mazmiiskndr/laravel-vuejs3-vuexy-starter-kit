@@ -23,5 +23,7 @@ app.use(createPinia())
 app.use(router)
 app.use(layoutsPlugin)
 
+
+
 // Mount vue app
 app.mount('#app')

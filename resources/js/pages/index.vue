@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Breadcrumbs />  
     <VCard
       class="mb-6"
       title="Kick start your project 🚀"
@@ -23,3 +24,7 @@
     </VCard>
   </div>
 </template>
+
+<script setup>
+import Breadcrumbs from '../components/Breadcrumb.vue';
+</script>

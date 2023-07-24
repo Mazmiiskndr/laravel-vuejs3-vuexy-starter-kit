@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Breadcrumbs />
     <VCard title="Create Awesome 🙌">
       <VCardText>This is your second page.</VCardText>
       <VCardText>
@@ -11,3 +12,7 @@
     </VCard>
   </div>
 </template>
+
+<script setup>
+import Breadcrumbs from '../components/Breadcrumb.vue';
+</script>

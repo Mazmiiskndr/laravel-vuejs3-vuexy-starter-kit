@@ -12,7 +12,7 @@ use App\Models\UseUuid as Model;
 
 class User extends Model
 {
-    // use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

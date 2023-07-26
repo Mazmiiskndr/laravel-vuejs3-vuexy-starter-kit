@@ -61,8 +61,34 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified user.
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        try {
+            // Get the user from the UserService
+            $user = $this->userService->getUser($id);
+
+            // If no user found, return error response
+            if (!$user) {
+                return $this->errorResponse('User not found.', 404);
+            }
+
+            // Return the success response
+            return $this->successResponse('Data fetched successfully.', $user);
+        } catch (\Exception $e) {
+            // Log the error message
+            Log::error('Failed to fetch user: ' . $e->getMessage());
+
+            // Return error response
+            return $this->errorResponse('Failed to fetch user.', 500);
+        }
+    }
+
+    /**
      * Get validated request parameters.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */

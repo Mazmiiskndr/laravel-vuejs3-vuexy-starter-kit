@@ -30,4 +30,14 @@ class UserServiceImplement extends Service implements UserService
   {
     return $this->handleRepositoryCall('getUsers', [$sort, $limit]);
   }
+
+  /**
+   * Get a user by UUID.
+   * @param  string  $id
+   * @return User|null
+   */
+  public function getUser(string $id)
+  {
+    return $this->handleRepositoryCall('getUser', [$id]);
+  }
 }

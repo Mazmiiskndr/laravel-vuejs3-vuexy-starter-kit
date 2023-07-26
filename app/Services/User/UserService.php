@@ -14,4 +14,11 @@ interface UserService extends BaseService
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getUsers(string $sort = 'asc', int $limit = 10);
+
+    /**
+     * Get a user by UUID.
+     * @param  string  $id
+     * @return User|null
+     */
+    public function getUser(string $id);
 }

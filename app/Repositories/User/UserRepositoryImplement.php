@@ -30,4 +30,14 @@ class UserRepositoryImplement extends Eloquent implements UserRepository
     {
         return $this->model->orderBy('id', $sort)->paginate($limit);
     }
+
+    /**
+     * Get a user by UUID.
+     * @param  string  $id
+     * @return User|null
+     */
+    public function getUser(string $id)
+    {
+        return $this->model->find($id);
+    }
 }

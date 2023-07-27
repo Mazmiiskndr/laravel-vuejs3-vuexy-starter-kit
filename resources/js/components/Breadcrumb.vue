@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <VBreadcrumbs
-      :items="breadcrumbs"
-      divider="/"
-    />
-  </div>
+    <div>
+        <VBreadcrumbs
+            :items="breadcrumbs"
+            divider="/"
+        />
+    </div>
 </template>
 
 <script setup>
@@ -15,12 +15,12 @@ import titles from '../../js/navigation/vertical/index';
 const breadcrumbs = ref([]);
 
 onMounted(() => {
-  setBreadcrumbs();
+    setBreadcrumbs();
 });
 
 const setBreadcrumbs = () => {
-  const route = useRoute();
+    const route = useRoute();
   
-  breadcrumbs.value = titles.filter(item => item.title === 'Home' || item.to.name === route.name);
+    breadcrumbs.value = titles.filter(item => item.title === 'Home' || item.to.name === route.name);
 };
 </script>

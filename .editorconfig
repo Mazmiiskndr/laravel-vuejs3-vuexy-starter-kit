@@ -12,6 +12,7 @@ insert_final_newline = true
 # Set default charset
 [*.{js,py}]
 charset = utf-8
+indent_size = 4
 
 # 4 space indentation
 [*.py]
@@ -21,7 +22,7 @@ indent_size = 4
 # 2 space indentation
 [*.{vue,scss,ts}]
 indent_style = space
-indent_size = 2
+indent_size = 4
 
 # Tab indentation (no size specified)
 [Makefile]
@@ -30,9 +31,9 @@ indent_style = tab
 # Indentation override for all JS under lib directory
 [lib/**.js]
 indent_style = space
-indent_size = 2
+indent_size = 4
 
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml}]
 indent_style = space
-indent_size = 2
+indent_size = 4

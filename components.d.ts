@@ -27,6 +27,8 @@ declare module '@vue/runtime-core' {
     AppStepper: typeof import('./resources/js/@core/components/AppStepper.vue')['default']
     AppTextarea: typeof import('./resources/js/@core/components/app-form-elements/AppTextarea.vue')['default']
     AppTextField: typeof import('./resources/js/@core/components/app-form-elements/AppTextField.vue')['default']
+    Breadcrumb: typeof import('./resources/js/components/Breadcrumb.vue')['default']
+    Breadcumb: typeof import('./resources/js/components/Breadcumb.vue')['default']
     BuyNow: typeof import('./resources/js/@core/components/BuyNow.vue')['default']
     CardAddEditDialog: typeof import('./resources/js/components/dialogs/CardAddEditDialog.vue')['default']
     CardStatisticsHorizontal: typeof import('./resources/js/@core/components/cards/CardStatisticsHorizontal.vue')['default']

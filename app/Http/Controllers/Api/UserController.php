@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\User\UserService;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -38,19 +40,18 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            // Get validated parameters
-            [$sort, $limit] = $this->getValidatedParams($request);
-
-            // Query the users through UserService
-            $users = $this->userService->getUsers($sort, $limit);
-
-            // If no users found, return error response
-            if ($users->isEmpty()) {
-                return $this->errorResponse('No users found.', 404);
+            if ($request->ajax()) {
+                $data = User::latest()->get();
+                return Datatables::of($data)
+                    ->addColumn('created_at', function ($row) {
+                        return date('d-m-Y', strtotime($row->created_at));
+                    })
+                    ->addColumn('updated_at', function ($row) {
+                        return date('d-m-Y', strtotime($row->updated_at));
+                    })
+                    ->addIndexColumn()
+                    ->make(true);
             }
-
-            // Return the success response
-            return $this->successResponse('Data fetched successfully.', $users);
         } catch (\Exception $e) {
             // Log the error message
             Log::error('Failed to fetch users: ' . $e->getMessage());
@@ -85,25 +86,5 @@ class UserController extends Controller
             // Return error response
             return $this->errorResponse('Failed to fetch user.', 500);
         }
-    }
-
-    /**
-     * Get validated request parameters.
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function getValidatedParams(Request $request)
-    {
-        // Fetch 'sort' query parameter, if it doesn't exist default is 'asc'.
-        $sort = $request->query('sort', 'asc');
-        // Ensure 'sort' value is either 'asc' or 'desc', otherwise default to 'asc'.
-        $sort = in_array($sort, ['asc', 'desc']) ? $sort : 'asc';
-        // Fetch 'limit' query parameter, if it doesn't exist default is 10.
-        $limit = (int) $request->query('limit', 10);
-        // Ensure 'limit' value is between 1 and 100, otherwise limit to min or max bounds.
-        $limit = max(1, min(100, $limit));
-
-        // Return both 'sort' and 'limit' values.
-        return [$sort, $limit];
     }
 }

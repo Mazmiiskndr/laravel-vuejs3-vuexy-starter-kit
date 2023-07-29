@@ -1,45 +1,54 @@
 <template>
-    <!-- <Breadcrumbs /> -->
-    <VCard
-        v-if="users"
-        id="userslist"
-    >
-        <VDataTable
-            v-model:items-per-page="itemsPerPage"
-            :headers="headersUsers"
-            :items="users"
-            item-value="name"
-            class="elevation-1"
-        />
-    </VCard>
+    <div>
+        <Breadcrumbs />
+        <VCard title="Users List">
+            <div class="container">
+                <div class="row">
+                    <DataTable
+                        :columns="columns"
+                        :data="tableData"
+                        :options="options"
+                        class="table table-hover table-bordered"
+                    />
+                </div>
+            </div>
+        </VCard>
+    </div>
 </template>
 
 <script setup>
-import apiService from '@/services/apiService';
-import { onMounted, ref } from 'vue';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import Breadcrumbs from '@/components/Breadcrumb.vue';
+import DataTablesCore from 'datatables.net-bs5';
+import DataTable from 'datatables.net-vue3';
 
-// Define your dynamic headers to match API data structure
-const headersUsers = [
-    { text: 'ID', value: 'id', title: 'ID' },
-    { text: 'Name', value: 'name', title: 'Name' },
-    { text: 'Email', value: 'email', title: 'Email' },
+DataTable.use(DataTablesCore);
+
+// Define the columns and their corresponding titles
+const columns = [
+    { title: "No.", data: "DT_RowIndex", orderable: false, searchable: false }, 
+    { title: "Name", data: "name" },
+    { title: "Email", data: "email" },
+    { title: "Created At", data: "created_at" },
+    { title: "Updated At", data: "updated_at" },
 ];
 
-// Define your dynamic items
-let users = ref([]); 
-let itemsPerPage = ref(10);
+let tableData = ref([]);
 
-const loadItems = async () => {
-    try {
-        const response = await apiService.getUsers();
-
-        users.value = response.results.data;
-        itemsPerPage.value = response.results.per_page;
-    } catch (error) {
-        console.error('Failed to load users:', error);
-    }
+const options = {
+    processing: true,
+    serverSide: true,
+    autoWidth: true,
+    order: [[0]],
+    ajax: {
+        url: "api/users",
+        type: 'GET',
+    },
+    responsive: true,
+    select: true,
+    language: {
+        lengthMenu: "_MENU_",
+        search: "_INPUT_",
+        searchPlaceholder: "Search records",
+    },
 };
-
-onMounted(loadItems);
 </script>

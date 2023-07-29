@@ -1,26 +1,26 @@
 export default [
-  {
-    title: 'Home',
-    meta: {
-      title: 'Home Page',
+    {
+        title: "Home",
+        meta: {
+            title: "Home Page",
+        },
+        to: { name: "index" },
+        icon: { icon: "tabler-smart-home" },
     },
-    to: { name: 'index' },
-    icon: { icon: 'tabler-smart-home' },
-  },
-  {
-    title: 'Second page',
-    meta: {
-      title: 'Second page',
+    {
+        title: "Second page",
+        meta: {
+            title: "Second page",
+        },
+        to: { name: "second-page" },
+        icon: { icon: "tabler-file" },
     },
-    to: { name: 'second-page' },
-    icon: { icon: 'tabler-file' },
-  },
-  {
-    title: 'Test',
-    meta: {
-      title: 'Test page',
+    {
+        title: "Test",
+        meta: {
+            title: "Test page",
+        },
+        to: { name: "test" },
+        icon: { icon: "tabler-file" },
     },
-    to: { name: 'test' },
-    icon: { icon: 'tabler-file' },
-  },
-]
+];

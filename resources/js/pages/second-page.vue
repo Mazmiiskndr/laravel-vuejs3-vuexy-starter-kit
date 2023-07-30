@@ -1,23 +1,26 @@
 <template>
     <div>
         <Breadcrumbs />
-        <VCard title="Users List">
-            <div class="container">
-                <div class="row">
-                    <DataTable
-                        :columns="columns"
-                        :data="tableData"
-                        :options="options"
-                        class="table table-hover table-bordered"
-                    />
-                </div>
-            </div>
-        </VCard>
+        <VRow>
+            <VCol cols="12">
+                <VCard title="Users List">
+                    <VCardItem>
+                        <DataTable
+                            :columns="columns"
+                            :data="tableData"
+                            :options="options"
+                            class="table table-hover table-bordered"
+                        />
+                    </VCardItem>
+                </VCard>
+            </VCol>
+        </VRow>
     </div>
 </template>
 
 <script setup>
 import Breadcrumbs from '@/components/Breadcrumb.vue';
+
 import DataTablesCore from 'datatables.net-bs5';
 import DataTable from 'datatables.net-vue3';
 
@@ -52,3 +55,12 @@ const options = {
     },
 };
 </script>
+
+<style lang="scss">
+.v-card-item {
+    padding: 20px 20px 10px 20px;
+}
+.v-card-title {
+    font-size: 1.5rem;
+}
+</style>
